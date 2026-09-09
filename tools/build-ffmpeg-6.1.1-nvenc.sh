@@ -28,9 +28,8 @@ sudo apt-get install -y --no-install-recommends \
 cd "${SRC}"
 
 echo "===== zlib 1.3.1 ====="
-curl -L --retry 5 -o zlib.tar.gz https://zlib.net/fossils/zlib-1.3.1.tar.gz
-tar xf zlib.tar.gz
-cd zlib-1.3.1
+git clone --depth 1 --branch v1.3.1 https://github.com/madler/zlib.git zlib
+cd zlib
 ./configure --prefix="${PREFIX}" --static
 make -j"${JOBS}"
 make install
