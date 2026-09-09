@@ -213,7 +213,8 @@ cd "${SRC}"
 echo "===== FriBidi 1.0.13 ====="
 git clone --depth 1 --branch v1.0.13 https://github.com/fribidi/fribidi.git
 meson setup fribidi/build fribidi \
-  --prefix="${PREFIX}" --libdir=lib --buildtype=release --default-library=static
+  --prefix="${PREFIX}" --libdir=lib --buildtype=release --default-library=static \
+  -Ddocs=false -Dbin=false -Dtests=false
 ninja -C fribidi/build -j"${JOBS}"
 ninja -C fribidi/build install
 
@@ -221,7 +222,7 @@ echo "===== HarfBuzz 8.2.1 ====="
 git clone --depth 1 --branch 8.2.1 https://github.com/harfbuzz/harfbuzz.git
 meson setup harfbuzz/build harfbuzz \
   --prefix="${PREFIX}" --libdir=lib --buildtype=release --default-library=static \
-  -Dtests=disabled -Ddocs=disabled
+  -Dtests=disabled -Ddocs=disabled -Dglib=disabled -Dgobject=disabled -Dcairo=disabled -Dicu=disabled
 ninja -C harfbuzz/build -j"${JOBS}"
 ninja -C harfbuzz/build install
 
