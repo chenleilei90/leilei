@@ -22,7 +22,7 @@ mkdir -p "${PREFIX}" "${SRC}" "${PKG_DIR}"
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends \
   build-essential autoconf automake libtool pkg-config cmake ninja-build meson \
-  nasm yasm git curl wget ca-certificates xz-utils bzip2 unzip python3 perl texinfo \
+  nasm yasm gperf git curl wget ca-certificates xz-utils bzip2 unzip python3 perl texinfo \
   libc6-dev libnuma-dev
 
 cd "${SRC}"
