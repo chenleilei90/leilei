@@ -1,0 +1,29 @@
+name: Build FFmpeg 6.1.1 NVENC
+
+on:
+  push:
+    branches:
+      - chatgpt-ffmpeg-6.1.1-build
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build FFmpeg 6.1.1 NVENC package
+        run: |
+          chmod +x tools/build-ffmpeg-6.1.1-nvenc.sh
+          tools/build-ffmpeg-6.1.1-nvenc.sh
+
+      - name: Upload FFmpeg package
+        uses: actions/upload-artifact@v4
+        with:
+          name: ffmpeg-6.1.1-nvenc-linux-x86_64
+          path: |
+            dist/ffmpeg-6.1.1-nvenc-linux-x86_64.tar.xz
+            dist/ffmpeg-6.1.1-nvenc-linux-x86_64.tar.xz.sha256
+          if-no-files-found: error
+          retention-days: 7
